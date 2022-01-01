@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "924849623332",
+    "project_id": "movies-and-share",
+    "storage_bucket": "movies-and-share.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924849623332:android:53efeedd272f65488163b1",
+        "android_client_info": {
+          "package_name": "com.gperalta.moviesandshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924849623332-su7gvbkbruop7m936ck33ubpcgfe6h1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWSCxI-5j-Xt1v5smpjdpAjzqrngrUqvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924849623332-su7gvbkbruop7m936ck33ubpcgfe6h1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
