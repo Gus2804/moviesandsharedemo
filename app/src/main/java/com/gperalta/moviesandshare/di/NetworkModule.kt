@@ -25,19 +25,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
-    @Singleton
-    @Provides
-    fun provideApplication(@ApplicationContext app: Context): MoviesAndShareApplication {
-        return app as MoviesAndShareApplication
-    }
-
-    @Provides
-    @Singleton
-    fun provideContext(app: MoviesAndShareApplication) : Context {
-        return app.applicationContext
-    }
-
-
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
