@@ -21,9 +21,18 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "URL_BASE", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "URL_IMAGES", "\"https://image.tmdb.org/t/p/w500\"")
+            buildConfigField("String", "MOVIES_API_KEY", "\"6cdf5a4dc1ced2d5de9810229ad3b7dc\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "URL_BASE", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "URL_IMAGES", "\"https://image.tmdb.org/t/p/w500\"")
+            buildConfigField("String", "MOVIES_API_KEY", "\"6cdf5a4dc1ced2d5de9810229ad3b7dc\"")
         }
     }
     compileOptions {
@@ -33,10 +42,24 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures{
+        viewBinding true
+    }
 }
 
 dependencies {
     def nav_version = "2.3.5"
+    def room_version = "2.3.0"
+    def paging_version = "3.1.0"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.30"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC"
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     implementation platform('com.google.firebase:firebase-bom:29.0.3')
 
@@ -67,5 +90,7 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
 
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
+
+    implementation "androidx.paging:paging-runtime:$paging_version"
 
 }
