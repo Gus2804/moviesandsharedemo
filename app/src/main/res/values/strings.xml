@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movies and Share</string>
+    <string name="waiting_location">En espera</string>
+    <string name="sending_location">Enviando ubicación</string>
 </resources>

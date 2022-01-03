@@ -1,6 +1,7 @@
 package com.gperalta.moviesandshare.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.gperalta.moviesandshare.MoviesAndShareApplication
 import dagger.Module
 import dagger.Provides
@@ -24,6 +25,12 @@ class CommonModule {
     @Singleton
     fun provideContext(app: MoviesAndShareApplication) : Context {
         return app.applicationContext
+    }
+
+    @Provides
+    @Singleton
+    fun providePreferences(context: Context) : SharedPreferences {
+        return context.getSharedPreferences("MoviesAndShare", Context.MODE_PRIVATE)
     }
 
 }

@@ -1,16 +1,12 @@
 package com.gperalta.moviesandshare.ui.movies
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import coil.load
-import com.gperalta.moviesandshare.R
 import com.gperalta.moviesandshare.databinding.FragmentMoviesBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
