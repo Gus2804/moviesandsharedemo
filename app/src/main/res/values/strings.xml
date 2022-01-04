@@ -2,4 +2,9 @@
     <string name="app_name">Movies and Share</string>
     <string name="waiting_location">En espera</string>
     <string name="sending_location">Enviando ubicación</string>
+    <string name="label_movies">Películas</string>
+    <string name="locations">Ubicaciones</string>
+    <string name="popular_movies">Películas populares</string>
+    <string name="phone_location_title">Ubicación del dispositivo</string>
+    <string name="phone_location_coordinates">%1$f, %2$f</string>
 </resources>

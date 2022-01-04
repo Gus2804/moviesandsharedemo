@@ -27,6 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
 import javax.inject.Inject
@@ -75,30 +76,37 @@ class LocationServices : LifecycleService() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(TAG, "OnDestroy")
         timer?.cancel()
     }
 
     private fun startTimer() {
         timer = lifecycleScope.launch(Dispatchers.IO) {
-            val difInMillis = Date().time - repository.getLastLocationDate().time
+            val difInMillis = Date().time - (repository.getLastLocationDate()?.time?:0)
+            Log.d(TAG, "Delay: "+difInMillis)
             val firstDelay = if(difInMillis <= LOCATION_INTERVAL) {
                 LOCATION_INTERVAL - difInMillis
-            } else 0
+            } else 1000
+            Log.d(TAG, "Delay: "+firstDelay)
             delay(firstDelay)
             while (true) {
-                _requestLocation.value = Date()
+                _requestLocation.value = true
                 delay(LOCATION_INTERVAL)
             }
         }
 
         lifecycleScope.launch {
             requestLocation.collectLatest {
-                val location = repository.getCurrentLocation()
-                notificationManager.notify(SERVICE_ID, getNotification(getString(R.string.sending_location)))
-                repository.saveLocation(location)
-                delay(5000)
-                notificationManager.notify(SERVICE_ID, getNotification())
+                if(it) {
+                    val location = repository.getCurrentLocation()
+                    notificationManager.notify(
+                        SERVICE_ID,
+                        getNotification(getString(R.string.sending_location))
+                    )
+                    repository.saveLocation(location)
+                    Log.d(TAG, "Ubicación Guardada")
+                    delay(5000)
+                    notificationManager.notify(SERVICE_ID, getNotification())
+                }
             }
         }
     }
@@ -108,8 +116,8 @@ class LocationServices : LifecycleService() {
         const val NOTIFICATION_CHANNEL_ID = "movies_and_share_channel_id"
         const val NOTIFICATION_CHANNEL_NAME = "movies_and_share_channel_name"
 
-        private val _requestLocation = MutableStateFlow(Date())
-        val requestLocation : StateFlow<Date> = _requestLocation
+        private val _requestLocation = MutableStateFlow(false)
+        val requestLocation : StateFlow<Boolean> = _requestLocation
 
     }
 

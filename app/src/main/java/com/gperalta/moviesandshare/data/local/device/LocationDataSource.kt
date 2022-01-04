@@ -1,4 +1,4 @@
-package com.gperalta.moviesandshare.data.device
+package com.gperalta.moviesandshare.data.local.device
 
 import android.Manifest
 import android.content.pm.PackageManager
